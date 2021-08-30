@@ -17,14 +17,20 @@ public class Q5_ConvertToUpperCase {
 		} catch (Exception e) {
 			System.out.println("ERROR: "+e.getMessage());
 		}
-
 	}
 
 	public static String firstCharToUpperCase(String str) throws Exception {
-		if ((!(str.charAt(0) >= 'a' && str.charAt(0) <= 'z') || (str.charAt(0) >= 'A' && str.charAt(0) <= 'Z'))) {
-			throw new Exception("Illegal Character. First letter should be an Alphabet!");
+		String words[] = str.split(" ");
+		String ans = "";
+
+		for(String word : words){
+			if (((word.charAt(0) <= 'a' && word.charAt(0) >= 'z') || (word.charAt(0) <= 'A' && word.charAt(0) >= 'Z'))) {
+				throw new Exception("Illegal Character. First letter should be an Alphabet!");
+			}
+			ans = ans + Character.toUpperCase(word.charAt(0)) + word.substring(1) + " ";
 		}
-		return Character.toUpperCase(str.charAt(0)) + str.substring(1);
+
+		return ans;
 	}
 
 }

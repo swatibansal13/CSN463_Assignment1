@@ -1,5 +1,7 @@
 package assignment1;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Q4_Anagram {
@@ -32,17 +34,27 @@ public class Q4_Anagram {
 		if ((!str1.matches("^[a-zA-Z]+") && !str2.matches("^[a-zA-Z]+")))
 			throw new Exception("String should contain only alphabets !");
 
-		int sum1 = 0;
-		for (int i = 0; i < str1.length(); i++) {
-			sum1 = sum1 + (int) str1.charAt(i);
+		Map<Character,Integer> alphaStr1 = new HashMap();
+		for(char c: str1.toCharArray()){
+			if(alphaStr1.containsKey(c)){
+				alphaStr1.replace(c, alphaStr1.get(c), alphaStr1.get(c) + 1);
+			}
+			else{
+				alphaStr1.put(c, 1);
+			}
 		}
 
-		int sum2 = 0;
-		for (int i = 0; i < str2.length(); i++) {
-			sum2 = sum2 + (int) str2.charAt(i);
+		Map<Character,Integer> alphaStr2 = new HashMap();
+		for(char c: str2.toCharArray()){
+			if(alphaStr2.containsKey(c)){
+				alphaStr2.replace(c, alphaStr2.get(c), alphaStr2.get(c) + 1);
+			}
+			else{
+				alphaStr2.put(c, 1);
+			}
 		}
 
-		return sum1 == sum2;
+		return alphaStr1.equals(alphaStr2);
 	}
 
 }
